@@ -35,19 +35,25 @@ var game = {
 
 	// Initialize melonJS and display a loading screen.
 	me.state.change(me.state.LOADING);
+
 },
 
 	"loaded" : function ()
 {
+
+	me.debug.renderHitBox = true;
    // set the "Play/Ingame" Screen Object
    me.state.set(me.state.PLAY, new game.PlayScreen());
      
    // add our player entity in the entity pool
    me.entityPool.add("mainPlayer", game.PlayerEntity);
-             
+   me.entityPool.add("CoinEntity", game.CoinEntity);
+	me.entityPool.add("EnemyEntity", game.EnemyEntity);
+            
    // enable the keyboard
    me.input.bindKey(me.input.KEY.LEFT,  "left");
    me.input.bindKey(me.input.KEY.RIGHT, "right");
+   me.input.bindKey(me.input.KEY.UP, "jump",true);
    me.input.bindKey(me.input.KEY.X,     "jump", true);
       
    // start the game 
